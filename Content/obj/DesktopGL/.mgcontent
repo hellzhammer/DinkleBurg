@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/Editor/Engine_Textures/Prototype_Tile_Selected.png</File>
+    <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/Editor/Engine_Textures/Prototype_Tile.png</File>
+    <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/GameFont.spritefont</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
