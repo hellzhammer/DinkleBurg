@@ -26,3 +26,8 @@ C:\Users\mattp\OneDrive\Desktop\DinkleBurg\obj\Debug\net6.0\ref\DinkleBurg.dll
 C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\Content\GameFont.xnb
 C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\Content\Editor\Engine_Textures\Prototype_Tile.xnb
 C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\Content\Editor\Engine_Textures\Prototype_Tile_Selected.xnb
+C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\Content\Editor\Terrain_Textures\Cliff_Side.xnb
+C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\Content\Editor\Terrain_Textures\Grass_Block.xnb
+C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\Content\Editor\Terrain_Textures\Sand_Block.xnb
+C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\Content\Editor\Terrain_Textures\Snow_Block.xnb
+C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\Content\Editor\Terrain_Textures\Water_Block.xnb

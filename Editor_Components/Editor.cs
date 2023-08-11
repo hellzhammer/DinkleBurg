@@ -97,7 +97,7 @@ namespace DinkleBurg.Editor_Components
                     {
                         if (terrain.Tile_Map[i][j].is_empty)
                         {
-                            terrain.Tile_Map[i][j].Texture = Engine_Textures.textures["Prototype_Tile_Selected"];
+                            terrain.Tile_Map[i][j].Texture = Engine_Textures.gui_textures["Prototype_Tile_Selected"];
                             Active_Tile.mouse_over = terrain.Tile_Map[i][j];
                         }
 
@@ -124,19 +124,19 @@ namespace DinkleBurg.Editor_Components
                             terrain.Tile_Map[i][j].name = "air";
                             terrain.Tile_Map[i][j].is_empty = true;
                             terrain.Tile_Map[i][j].is_walkable = false;
-                            terrain.Tile_Map[i][j].Texture = Engine_Textures.textures["Prototype_Tile"];
+                            terrain.Tile_Map[i][j].Texture = Engine_Textures.gui_textures["Prototype_Tile"];
                         }
                         else if (Input.MouseHold(MouseButton.Right))
                         {
                             terrain.Tile_Map[i][j].name = "air";
                             terrain.Tile_Map[i][j].is_empty = true;
                             terrain.Tile_Map[i][j].is_walkable = false;
-                            terrain.Tile_Map[i][j].Texture = Engine_Textures.textures["Prototype_Tile"];
+                            terrain.Tile_Map[i][j].Texture = Engine_Textures.gui_textures["Prototype_Tile"];
                         }
                     }
                     else if (!Mouse_Rect.Intersects(Object_Rect) && terrain.Tile_Map[i][j].is_empty)
                     {
-                        terrain.Tile_Map[i][j].Texture = Engine_Textures.textures["Prototype_Tile"];
+                        terrain.Tile_Map[i][j].Texture = Engine_Textures.gui_textures["Prototype_Tile"];
                     }
                 }
             }
@@ -191,7 +191,7 @@ namespace DinkleBurg.Editor_Components
                     List<Tile> tiles = new List<Tile>();
                     for (int j = 0; j < Map_Height; j += pixel_Y)
                     {
-                        Tile tile = new Tile(i, j, Engine_Textures.textures["Prototype_Tile"], "air");
+                        Tile tile = new Tile(i, j, Engine_Textures.gui_textures["Prototype_Tile"], "air");
                         tiles.Add(tile);
                     }
                     Tile_Map.Add(tiles);

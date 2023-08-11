@@ -6,9 +6,19 @@
   <SourceFiles>
     <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/Editor/Engine_Textures/Prototype_Tile_Selected.png</File>
     <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/Editor/Engine_Textures/Prototype_Tile.png</File>
+    <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/Editor/Terrain_Textures/Cliff_Side.png</File>
+    <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/Editor/Terrain_Textures/Grass_Block.png</File>
+    <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/Editor/Terrain_Textures/Sand_Block.png</File>
+    <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/Editor/Terrain_Textures/Snow_Block.png</File>
+    <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/Editor/Terrain_Textures/Water_Block.png</File>
     <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/GameFont.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
