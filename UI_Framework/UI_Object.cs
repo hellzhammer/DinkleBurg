@@ -10,8 +10,8 @@ namespace UI_Framework
         public string name { get; set; }
         public Vector2 Position { get; set; }
 
-        public float Width { get; protected set; }
-        public float Height { get; protected set; }
+        public float Width { get; set; }
+        public float Height { get; set; }
         private readonly float font_char_size = 14;
 
         public void SetWidth(float width)
