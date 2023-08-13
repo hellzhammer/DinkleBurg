@@ -120,20 +120,28 @@ namespace DinkleBurg.Editor_Components
         {
             var base_pos = new Vector2((pos.X - width) - 12.5f, 0);
             this.buttons = new System.Collections.Generic.Dictionary<string, Button>();
-            this.background = new Box("Main_Panel",
+            this.background = new Box(
+                    "Main_Panel",
                     base_pos,
                     width,
-                    height
-                );
+                    height);
             this.background.Set_Background(Color.Red);
             Vector2 last = base_pos;
+            var tLabel = new Label("title_label", "Terrain Textures", this.background.Position, 100, 30);
+            tLabel.Set_Background(Color.Transparent);
+            this.background.AddChild(tLabel, false, false);
+
+            var h_box = new Box("hbox", new Vector2(this.background.Position.X, this.background.Position.Y + tLabel.Height), width, height);
+            h_box.Orientation = WidgetOrientation.Horizontal;
             foreach (var item in Engine_Textures.terrain_textures)
             {
-                Button b = new Button(item.Key, ""/*item.Key*/, last, 40, 40);
+                Button b = new Button(item.Key, ""/*item.Key*/, last, 32, 32);
                 b.background = item.Value;
-                this.buttons.Add(item.Key, b);
-                last = new Vector2(last.X, last.Y + 40 + 10);
+                //this.buttons.Add(item.Key, b);
+                h_box.AddChild(b);
+                last = new Vector2(last.X, last.Y + 32);
             }
+            this.background.AddChild(h_box, centered_items: true);
         }
 
         public override void Draw()
