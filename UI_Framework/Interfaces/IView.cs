@@ -8,7 +8,6 @@ namespace DinkleBurg.UI_Framework.Interfaces
     {
         Vector2 Position { get; set; }
         Box background { get; set; }
-        Dictionary<string, Button> buttons { get; set; }
 
         void Initialize(Vector2 pos, float height, float width);
         void Draw();

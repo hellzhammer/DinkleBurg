@@ -9,7 +9,6 @@ namespace DinkleBurg.UI_Framework.Interfaces
         public int Width, Height;
         public Vector2 Position { get; set; }
         public Box background { get; set; }
-        public Dictionary<string, Button> buttons { get; set; }
 
         public virtual void Initialize(Vector2 pos, float height, float width)
         {

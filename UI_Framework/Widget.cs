@@ -3,6 +3,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace UI_Framework
 {
+    public enum WidgetOrientation
+    {
+        Vertical,
+        Horizontal
+    }
+
     public abstract class Widget : UI_Object
     {
         public bool is_mouse_over { get; protected set; }

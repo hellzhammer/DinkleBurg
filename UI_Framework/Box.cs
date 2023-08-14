@@ -3,11 +3,6 @@ using System.Collections.Generic;
 
 namespace UI_Framework
 {
-    public enum WidgetOrientation
-    {
-        Vertical,
-        Horizontal
-    }
     public class Box : Widget
     {
         public WidgetOrientation Orientation = WidgetOrientation.Vertical;
@@ -46,6 +41,7 @@ namespace UI_Framework
                             y = this.Children[Children.Count - 1].Position.Y + widget.Height - 16 + padding;
                         }
                         Vector2 v2 = new Vector2(this.Position.X + (this.Width / 2) - 16, y);
+                        widget.rect = new Rectangle(v2.ToPoint(), new Point((int)widget.Width, (int)widget.Height));
                         widget.Position = v2;
                     }
 
@@ -70,6 +66,7 @@ namespace UI_Framework
                             x = this.Children[Children.Count - 1].Position.X + widget.Width - 16 + padding;
                         }
                         Vector2 v2 = new Vector2(x, this.Position.Y);
+                        widget.rect = new Rectangle(v2.ToPoint(), new Point((int)widget.Width, (int)widget.Height));
                         widget.Position = v2;
                     }
 
@@ -103,6 +100,10 @@ namespace UI_Framework
             var mstate = Input.Get_Mouse_State();
             Vector2 mouse = new Vector2(mstate.X, mstate.Y);
             OnMouseOver(mouse);
+            foreach (var item in this.Children)
+            {
+                item.Update();
+            }
         }
     }
 }
