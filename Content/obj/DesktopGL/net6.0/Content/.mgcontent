@@ -11,9 +11,15 @@
     <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/Editor/Terrain_Textures/Sand_Block.png</File>
     <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/Editor/Terrain_Textures/Snow_Block.png</File>
     <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/Editor/Terrain_Textures/Water_Block.png</File>
+    <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/Editor/Vegetation_Textures/Boulder.png</File>
+    <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/Editor/Vegetation_Textures/Bush.png</File>
+    <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/Editor/Vegetation_Textures/Tree_Maple.png</File>
     <File>C:/Users/mattp/OneDrive/Desktop/DinkleBurg/Content/GameFont.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -1,4 +1,5 @@
-﻿using DinkleBurg.Models;
+﻿using DinkleBurg.Editor_Components;
+using DinkleBurg.Models;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -19,12 +20,12 @@ namespace DinkleBurg.Map_Components
             this.Texture = text;
             this.OnClick = () =>
             {
-                //if (Active_Tile.tile != null)
-                //{
+                if (Editor.current.tile_manager.selected_texture != null && !string.IsNullOrWhiteSpace(Editor.current.tile_manager.selected_texture_name))
+                {
                     this.is_empty = false;
-                    this.Texture = Editor_Components.Editor.current.tile_manager.selected_texture; //Selection.Selected_Texture;
-                    this.name = Editor_Components.Editor.current.tile_manager.selected_texture_name;
-                //}
+                    this.Texture = Editor.current.tile_manager.selected_texture; //Selection.Selected_Texture;
+                    this.name = Editor.current.tile_manager.selected_texture_name;
+                }
             };
 
             this.OnHold = () =>
@@ -32,13 +33,10 @@ namespace DinkleBurg.Map_Components
                 if (Active_Tile.tile != null)
                 {
                     this.is_empty = false;
-                    this.Texture = Editor_Components.Editor.current.tile_manager.selected_texture; //Selection.Selected_Texture;
-                    this.name = Editor_Components.Editor.current.tile_manager.selected_texture_name;
+                    this.Texture = Editor.current.tile_manager.selected_texture; //Selection.Selected_Texture;
+                    this.name = Editor.current.tile_manager.selected_texture_name;
                 }
             };
-            /*
-
-            */
         }
 
         public void Draw()

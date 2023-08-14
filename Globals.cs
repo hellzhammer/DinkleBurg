@@ -11,6 +11,7 @@ public static class Engine_Textures
 {
     public static Dictionary<string, Texture2D> gui_textures { get; set; }
     public static Dictionary<string, Texture2D> terrain_textures { get; set; }
+    public static Dictionary<string, Texture2D> vegetation_textures { get; set; }
 
     /// <summary>
     /// Loads all engine gui textures.
@@ -43,7 +44,10 @@ public static class Engine_Textures
     /// <param name="content"></param>
     public static void LoadVegetationTextures(ContentManager content)
     {
-
+        vegetation_textures = new Dictionary<string, Texture2D>();
+        vegetation_textures.Add("Boulder", content.Load<Texture2D>("Editor/Vegetation_Textures/Boulder"));
+        vegetation_textures.Add("Tree_Maple", content.Load<Texture2D>("Editor/Vegetation_Textures/Tree_Maple"));
+        vegetation_textures.Add("Bush", content.Load<Texture2D>("Editor/Vegetation_Textures/Bush"));
     }
 } 
 
@@ -62,6 +66,7 @@ public static class Globals
 
         // here load all game textures to be used in the engine/games
         Engine_Textures.LoadTerrainTextures(content);
+        Engine_Textures.LoadVegetationTextures(content);
         Engine_Textures.LoadEngineGUITextures(content);
 
         // load the camera logic

@@ -13,10 +13,8 @@ namespace DinkleBurg.Editor_Components
     // this is all going to require some rethinking in order to work how I want it to 
     public class Editor : GameComponent
     {
-        public class EditorButtonManager
+        public class Activated
         {
-            public Tile tile_mouse_over { get; set; }
-            
             public string selected_texture_name { get; set; }
             public Texture2D selected_texture { get; set; }
         }
@@ -26,7 +24,7 @@ namespace DinkleBurg.Editor_Components
             Running,
             Menu
         }
-        public EditorButtonManager tile_manager { get; set; }
+        public Activated tile_manager { get; set; }
         public EditorState State = EditorState.Running;
         public static Editor current { get; set; }
 
@@ -38,7 +36,7 @@ namespace DinkleBurg.Editor_Components
         public Editor(int Map_Width, int Map_Height, Game game) : base(game)
         {
             // load the user interface for the application
-            this.tile_manager = new EditorButtonManager();
+            this.tile_manager = new Activated();
             this.ui_manager = new Editor_UI_Manager();
 
             terrain = new Terrain(Map_Width, Map_Height, pixel_X, pixel_Y);
