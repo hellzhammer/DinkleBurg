@@ -22,15 +22,18 @@ namespace DinkleBurg.Map_Components
             {
                 if (Editor.current.tile_manager.selected_texture != null && !string.IsNullOrWhiteSpace(Editor.current.tile_manager.selected_texture_name))
                 {
-                    this.is_empty = false;
-                    this.Texture = Editor.current.tile_manager.selected_texture; //Selection.Selected_Texture;
-                    this.name = Editor.current.tile_manager.selected_texture_name;
+                    if (Editor.current.tile_manager.selected_texture != null)
+                    {
+                        this.is_empty = false;
+                        this.Texture = Editor.current.tile_manager.selected_texture; //Selection.Selected_Texture;
+                        this.name = Editor.current.tile_manager.selected_texture_name;
+                    }
                 }
             };
 
             this.OnHold = () =>
             {
-                if (Active_Tile.tile != null)
+                if (Editor.current.tile_manager.selected_texture != null)
                 {
                     this.is_empty = false;
                     this.Texture = Editor.current.tile_manager.selected_texture; //Selection.Selected_Texture;

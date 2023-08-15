@@ -65,7 +65,6 @@ namespace DinkleBurg.Editor_Components
                 this.State = EditorState.Running;
                 Debug.WriteLine("Working");
             };
-
         }
 
         public void Draw()
@@ -170,6 +169,7 @@ namespace DinkleBurg.Editor_Components
         private int pixel_X = 0, pixel_Y = 0;
         private bool initialized = false;
         public List<List<Tile>> Tile_Map { get; set; }
+        public List<List<Tile>> Scenery_Map { get; set; }
 
         public Terrain(float map_X, float map_Y, int pixel_width, int pixel_height)
         {
@@ -178,14 +178,16 @@ namespace DinkleBurg.Editor_Components
             Map_Width = (int)map_X;
             Map_Height = (int)map_Y;
             this.Tile_Map = new List<List<Tile>>();
+            this.Scenery_Map = new List<List<Tile>>();
         }
 
-        public Terrain(List<List<Tile>> tiles)
+        public Terrain(List<List<Tile>> tiles, List<List<Tile>> scenery)
         {
             Map_Width = tiles[0].Count * pixel_X;
             Map_Height = tiles.Count * pixel_Y;
 
             this.Tile_Map = tiles;
+            this.Scenery_Map = scenery;
             this.initialized = true;
         }
 
@@ -193,6 +195,15 @@ namespace DinkleBurg.Editor_Components
         {
             if (!initialized)
             {
+                /*
+                    this section needs to be reworked so that vegetation can be added. 
+                    essentially this is the vegetation layers7
+                    
+                    so essentially:
+                        top_layer vegetation
+                        bottom_layer terrain
+                */
+
                 for (int i = 0; i < Map_Width; i += pixel_X)
                 {
                     List<Tile> tiles = new List<Tile>();
@@ -223,6 +234,14 @@ namespace DinkleBurg.Editor_Components
                     for (int j = 0; j < Tile_Map[i].Count; j++)
                     {
                         Tile_Map[i][j].Draw();
+                    }
+                }
+
+                for (int i = 0; i < Scenery_Map.Count; i++)
+                {
+                    for (int j = 0; j < Scenery_Map[i].Count; j++)
+                    {
+                        Scenery_Map[i][j].Draw();
                     }
                 }
             }
