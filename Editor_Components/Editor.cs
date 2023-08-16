@@ -3,29 +3,27 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace DinkleBurg.Editor_Components
 {
-    // want to use game component in order to update seperate modules individually? 
-    // need to test to see if this actually increases any speed in the future? 
-    // this is all going to require some rethinking in order to work how I want it to 
     public class Editor : GameComponent
     {
         public class Activated
         {
             public string selected_texture_name { get; set; }
             public Texture2D selected_texture { get; set; }
+
+            public Editor_UI_Manager.TabState current = Editor_UI_Manager.TabState.none;
         }
 
-        public enum EditorState
+        private enum EditorState
         {
             Running,
             Menu
         }
         public Activated tile_manager { get; set; }
-        public EditorState State = EditorState.Running;
+        private EditorState State = EditorState.Running;
         public static Editor current { get; set; }
 
         private int pixel_X = 32;
@@ -35,13 +33,12 @@ namespace DinkleBurg.Editor_Components
 
         public Editor(int Map_Width, int Map_Height, Game game) : base(game)
         {
-            // load the user interface for the application
+            current = this;
+            
             this.tile_manager = new Activated();
             this.ui_manager = new Editor_UI_Manager();
-
             terrain = new Terrain(Map_Width, Map_Height, pixel_X, pixel_Y);
-            current = this;
-
+            
             game.Components.Add(this);
         }
 
@@ -59,11 +56,9 @@ namespace DinkleBurg.Editor_Components
 
             ui_manager.terrain_Menu.background.Mouse_Over += () => {
                 this.State = EditorState.Menu;
-                Debug.WriteLine("Working");
             };
             ui_manager.terrain_Menu.background.Mouse_Exit += () => {
                 this.State = EditorState.Running;
-                Debug.WriteLine("Working");
             };
         }
 
@@ -103,46 +98,45 @@ namespace DinkleBurg.Editor_Components
                     {
                         if (terrain.Tile_Map[i][j].is_empty)
                         {
-                            terrain.Tile_Map[i][j].Texture = Engine_Textures.gui_textures["Prototype_Tile_Selected"];
+                            terrain.Tile_Map[i][j].Texture = Engine_Texture_Loader.gui_textures["Prototype_Tile_Selected"];
                             Active_Tile.mouse_over = terrain.Tile_Map[i][j];
                         }
 
-                        if (Input.MouseDown(MouseButton.Left))
+                        if (Input.MouseDown(MouseButton.Left) || Input.MouseHold(MouseButton.Left))
                         {
-                            if (terrain.Tile_Map[i][j].OnClick != null)
+                            if (tile_manager.current == Editor_UI_Manager.TabState.terrain)
                             {
-                                terrain.Tile_Map[i][j].OnClick.Invoke();
+                                if (terrain.Tile_Map[i][j].OnClick != null)
+                                {
+                                    terrain.Tile_Map[i][j].OnClick.Invoke();
+                                }
+                                Active_Tile.tile = terrain.Tile_Map[i][j];
                             }
-                            Active_Tile.tile = terrain.Tile_Map[i][j];
-                        }
-                        else if (Input.MouseHold(MouseButton.Left))
-                        {
-                            if (terrain.Tile_Map[i][j].OnHold != null)
+                            else if (tile_manager.current == Editor_UI_Manager.TabState.vegetation)
                             {
-                                terrain.Tile_Map[i][j].OnHold.Invoke();
+                                terrain.Scenery_Map[i][j] = new Tile((int)terrain.Tile_Map[i][j].Position.X, (int)terrain.Tile_Map[i][j].Position.Y, tile_manager.selected_texture, tile_manager.selected_texture_name);
                             }
-                            Active_Tile.tile = terrain.Tile_Map[i][j];
                         }
 
                         // these are hardcoded editor functions
-                        if (Input.MouseDown(MouseButton.Right))
+                        if (Input.MouseDown(MouseButton.Right) || Input.MouseHold(MouseButton.Right))
                         {
-                            terrain.Tile_Map[i][j].name = "air";
-                            terrain.Tile_Map[i][j].is_empty = true;
-                            terrain.Tile_Map[i][j].is_walkable = false;
-                            terrain.Tile_Map[i][j].Texture = Engine_Textures.gui_textures["Prototype_Tile"];
-                        }
-                        else if (Input.MouseHold(MouseButton.Right))
-                        {
-                            terrain.Tile_Map[i][j].name = "air";
-                            terrain.Tile_Map[i][j].is_empty = true;
-                            terrain.Tile_Map[i][j].is_walkable = false;
-                            terrain.Tile_Map[i][j].Texture = Engine_Textures.gui_textures["Prototype_Tile"];
+                            if (tile_manager.current == Editor_UI_Manager.TabState.terrain)
+                            {
+                                terrain.Tile_Map[i][j].name = "air";
+                                terrain.Tile_Map[i][j].is_empty = true;
+                                terrain.Tile_Map[i][j].is_walkable = false;
+                                terrain.Tile_Map[i][j].Texture = Engine_Texture_Loader.gui_textures["Prototype_Tile"];
+                            }
+                            else if (tile_manager.current == Editor_UI_Manager.TabState.vegetation)
+                            {
+                                terrain.Scenery_Map[i][j] = null;
+                            }
                         }
                     }
                     else if (!Mouse_Rect.Intersects(Object_Rect) && terrain.Tile_Map[i][j].is_empty)
                     {
-                        terrain.Tile_Map[i][j].Texture = Engine_Textures.gui_textures["Prototype_Tile"];
+                        terrain.Tile_Map[i][j].Texture = Engine_Texture_Loader.gui_textures["Prototype_Tile"];
                     }
                 }
             }
@@ -169,7 +163,7 @@ namespace DinkleBurg.Editor_Components
         private int pixel_X = 0, pixel_Y = 0;
         private bool initialized = false;
         public List<List<Tile>> Tile_Map { get; set; }
-        public List<List<Tile>> Scenery_Map { get; set; }
+        public Tile[][] Scenery_Map { get; set; }
 
         public Terrain(float map_X, float map_Y, int pixel_width, int pixel_height)
         {
@@ -178,10 +172,9 @@ namespace DinkleBurg.Editor_Components
             Map_Width = (int)map_X;
             Map_Height = (int)map_Y;
             this.Tile_Map = new List<List<Tile>>();
-            this.Scenery_Map = new List<List<Tile>>();
         }
 
-        public Terrain(List<List<Tile>> tiles, List<List<Tile>> scenery)
+        public Terrain(List<List<Tile>> tiles, Tile[][] scenery)
         {
             Map_Width = tiles[0].Count * pixel_X;
             Map_Height = tiles.Count * pixel_Y;
@@ -195,24 +188,22 @@ namespace DinkleBurg.Editor_Components
         {
             if (!initialized)
             {
-                /*
-                    this section needs to be reworked so that vegetation can be added. 
-                    essentially this is the vegetation layers7
-                    
-                    so essentially:
-                        top_layer vegetation
-                        bottom_layer terrain
-                */
-
                 for (int i = 0; i < Map_Width; i += pixel_X)
                 {
                     List<Tile> tiles = new List<Tile>();
                     for (int j = 0; j < Map_Height; j += pixel_Y)
                     {
-                        Tile tile = new Tile(i, j, Engine_Textures.gui_textures["Prototype_Tile"], "air");
+                        Tile tile = new Tile(i, j, Engine_Texture_Loader.gui_textures["Prototype_Tile"], "air");
                         tiles.Add(tile);
                     }
                     Tile_Map.Add(tiles);
+                }
+
+                // init the scene objects
+                this.Scenery_Map = new Tile[Tile_Map.Count][];
+                for (int y = 0; y < Scenery_Map.Length; y++)
+                {
+                    Scenery_Map[y] = new Tile[Tile_Map[y].Count];
                 }
             }
         }
@@ -237,11 +228,14 @@ namespace DinkleBurg.Editor_Components
                     }
                 }
 
-                for (int i = 0; i < Scenery_Map.Count; i++)
+                for (int i = 0; i < Scenery_Map.Length; i++)
                 {
-                    for (int j = 0; j < Scenery_Map[i].Count; j++)
+                    for (int j = 0; j < Scenery_Map[i].Length; j++)
                     {
-                        Scenery_Map[i][j].Draw();
+                        if (Scenery_Map[i][j] != null)
+                        {
+                            Scenery_Map[i][j].Draw();
+                        }
                     }
                 }
             }

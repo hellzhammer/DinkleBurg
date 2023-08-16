@@ -10,8 +10,7 @@ namespace DinkleBurg.Editor_Components
         public Vegetation_Menu vegetation_Menu { get; protected set; }
         public Terrain_Menu terrain_Menu { get; protected set; }
 
-        private enum TabState { terrain, vegetation, none }
-        private TabState curr_state = TabState.terrain;
+        public enum TabState { terrain, vegetation, none }
 
         // tabs + title label
         Button Terrain_Tab { get; set; }
@@ -22,6 +21,7 @@ namespace DinkleBurg.Editor_Components
         public Editor_UI_Manager()
         {
             // init a box along side of screen
+            Editor.current.tile_manager.current = TabState.terrain;
             vegetation_Menu = new Vegetation_Menu();
             terrain_Menu = new Terrain_Menu();  
         }
@@ -47,13 +47,13 @@ namespace DinkleBurg.Editor_Components
             Terrain_Tab.Set_Background(Color.Green);
 
             Terrain_Tab.Click = () => {
-                if (this.curr_state != TabState.terrain)
+                if (Editor.current.tile_manager.current != TabState.terrain)
                 {
-                    this.curr_state = TabState.terrain;
+                    Editor.current.tile_manager.current = TabState.terrain;
                 }
                 else
                 {
-                    this.curr_state = TabState.none;
+                    Editor.current.tile_manager.current = TabState.none;
                 }
             };
 
@@ -68,13 +68,13 @@ namespace DinkleBurg.Editor_Components
             Vegetation_Tab.Set_Background(Color.Green);
 
             Vegetation_Tab.Click = () => {
-                if (this.curr_state != TabState.vegetation)
+                if (Editor.current.tile_manager.current != TabState.vegetation)
                 {
-                    this.curr_state = TabState.vegetation;
+                    Editor.current.tile_manager.current = TabState.vegetation;
                 }
                 else
                 {
-                    this.curr_state = TabState.none;
+                    Editor.current.tile_manager.current = TabState.none;
                 }
             };
 
@@ -88,11 +88,11 @@ namespace DinkleBurg.Editor_Components
             Terrain_Tab.Update();
             Vegetation_Tab.Update();
 
-            if (this.curr_state == TabState.vegetation)
+            if (Editor.current.tile_manager.current == TabState.vegetation)
             {
                 this.vegetation_Menu.Update();
             }
-            else if (this.curr_state == TabState.terrain)
+            else if (Editor.current.tile_manager.current == TabState.terrain)
             {
                 this.terrain_Menu.Update();
             }
@@ -103,11 +103,11 @@ namespace DinkleBurg.Editor_Components
             this.side_panel.Draw(true);
             Terrain_Tab.Draw(true);
             Vegetation_Tab.Draw(true);
-            if (this.curr_state == TabState.vegetation)
+            if (Editor.current.tile_manager.current == TabState.vegetation)
             {
                 this.vegetation_Menu.Draw();
             }
-            else if (this.curr_state == TabState.terrain)
+            else if (Editor.current.tile_manager.current == TabState.terrain)
             {
                 this.terrain_Menu.Draw();
             }
@@ -134,7 +134,7 @@ namespace DinkleBurg.Editor_Components
 
             var h_box = new Box("hbox", new Vector2(this.background.Position.X, this.background.Position.Y + tLabel.Height), width, height);
             h_box.Orientation = WidgetOrientation.Horizontal;
-            foreach (var item in Engine_Textures.terrain_textures)
+            foreach (var item in Engine_Texture_Loader.terrain_textures)
             {
                 Button b = new Button(item.Key, ""/*item.Key*/, last, 32, 32);
                 b.background = item.Value;
@@ -186,7 +186,7 @@ namespace DinkleBurg.Editor_Components
 
             var h_box = new Box("hbox", new Vector2(this.background.Position.X, this.background.Position.Y + tLabel.Height), width, height);
             h_box.Orientation = WidgetOrientation.Horizontal;
-            foreach (var item in Engine_Textures.vegetation_textures)
+            foreach (var item in Engine_Texture_Loader.vegetation_textures)
             {
                 Button b = new Button(item.Key, ""/*item.Key*/, last, 32, 32);
                 b.background = item.Value;
