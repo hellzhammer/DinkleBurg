@@ -16,21 +16,21 @@ public class Engine : Game
         IsMouseVisible = true;
         this.Window.TextInput += (s, a) => {
             // find active ui element and update with keyboard input.
-            if (TextInputManger.active_element != null)
+            if (UIInputManager.active_element != null)
             {
                 Debug.WriteLine(a.Character);
                 Regex r = new Regex("^[a-zA-Z0-9]*$");
                 if (r.IsMatch(a.Character.ToString()) && !char.IsPunctuation(a.Character))
                 {
-                    if (!TextInputManger.active_element.numeric_input)
+                    if (!UIInputManager.active_element.numeric_input)
                     {
-                        TextInputManger.active_element.Content += a.Character;
+                        UIInputManager.active_element.Content += a.Character;
                     }
                     else
                     {
-                        if (TextInputManger.active_element.numeric_input && char.IsNumber(a.Character))
+                        if (UIInputManager.active_element.numeric_input && char.IsNumber(a.Character))
                         {
-                            TextInputManger.active_element.Content += a.Character;
+                            UIInputManager.active_element.Content += a.Character;
                         }
                     }
                 }
@@ -38,26 +38,26 @@ public class Engine : Game
                 {
                     if (a.Key == Keys.Back)
                     {
-                        var _s = TextInputManger.active_element.Content;
+                        var _s = UIInputManager.active_element.Content;
                         string n_string = string.Empty;
                         for (int i = 0; i < _s.Length - 1; i++)
                         {
                             n_string += _s[i];
                         }
-                        TextInputManger.active_element.Content = n_string;
+                        UIInputManager.active_element.Content = n_string;
                     }
                     else if (a.Key == Keys.Space)
                     {
-                        TextInputManger.active_element.Content += " ";
+                        UIInputManager.active_element.Content += " ";
                     }
                     else if (a.Key == Keys.Enter)
                     {
-                        TextInputManger.active_element = null;
+                        UIInputManager.active_element = null;
                     }
                 }
                 else if (!r.IsMatch(a.Character.ToString()) && char.IsPunctuation(a.Character))
                 {
-                    TextInputManger.active_element.Content += a.Character;
+                    UIInputManager.active_element.Content += a.Character;
                 }
             }
         };

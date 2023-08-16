@@ -61,15 +61,15 @@ namespace UI_Framework
         {
             if (this.is_mouse_over && Input.MouseDown(MouseButton.Left))
             {
-                TextInputManger.active_element = this;
+                UIInputManager.active_element = this;
                 if (this.OnActivated != null)
                     OnActivated.Invoke();
             }
             else if(!this.is_mouse_over && Input.MouseDown(MouseButton.Left))
             {
-                if (TextInputManger.active_element == this)
+                if (UIInputManager.active_element == this)
                 {
-                    TextInputManger.active_element = null;
+                    UIInputManager.active_element = null;
                     if (this.OnDeactivated != null)
                         OnDeactivated.Invoke();
                 }

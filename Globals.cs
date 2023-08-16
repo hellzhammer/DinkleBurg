@@ -81,7 +81,7 @@ public static class Active_Tile
     public static Tile mouse_over { get; set; }
 }
 
-public static class TextInputManger
+public static class UIInputManager
 {
     public static TextBox active_element { get; set; }
 }
