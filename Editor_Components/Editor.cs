@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace DinkleBurg.Editor_Components
@@ -40,6 +39,11 @@ namespace DinkleBurg.Editor_Components
             terrain = new Terrain(Map_Width, Map_Height, pixel_X, pixel_Y);
 
             game.Components.Add(this);
+        }
+
+        public void Save()
+        {
+            this.terrain.Save();
         }
 
         public void Initialize()

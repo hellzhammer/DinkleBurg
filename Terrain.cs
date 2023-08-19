@@ -1,5 +1,8 @@
 ﻿using DinkleBurg.Map_Components;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace DinkleBurg
 {
@@ -10,6 +13,64 @@ namespace DinkleBurg
         private bool initialized = false;
         public List<List<Tile>> Tile_Map { get; set; }
         public Tile[][] Scenery_Map { get; set; }
+
+        public void Save()
+        {
+            List<List<TileModel>> tmodels = new List<List<TileModel>>();
+            for (int x = 0; x < Tile_Map.Count; x++)
+            {
+                List<TileModel> tmods = new List<TileModel>();
+                for (int y = 0; y < Tile_Map[x].Count; y++)
+                {
+                    if (Tile_Map[x][y].is_empty)
+                    {
+                        tmods.Add(null);
+                    }
+                    else
+                    {
+                        var tm = Tile_Map[x][y].save_model();
+                        tmods.Add(tm);
+                    }
+                }
+                tmodels.Add(tmods);
+            }
+
+            List<List<TileModel>> vmodels = new List<List<TileModel>>();
+            for (int x = 0; x < Scenery_Map.Length; x++)
+            {
+                List<TileModel> vmods = new List<TileModel>();
+                for (int y = 0; y < Scenery_Map[x].Length; y++)
+                {
+                    if (Scenery_Map[x][y] != null)
+                    {
+                        var vm = Scenery_Map[x][y].save_model();
+                        vmods.Add(vm);
+                    }
+                    else
+                    {
+                        vmods.Add(null);
+                    }
+                }
+                vmodels.Add(vmods);
+            }
+
+            Dictionary<string, string> models = new Dictionary<string, string>();
+
+            var json = JsonConvert.SerializeObject(tmodels);
+            var json2 = JsonConvert.SerializeObject(vmodels);
+            models.Add("terrain", json);
+            models.Add("scenery", json2);
+
+            var save_json = JsonConvert.SerializeObject(models);
+
+            string file_id = Directory.GetFiles(Environment.CurrentDirectory + "/Maps").Length.ToString();
+            using (StreamWriter sw = new StreamWriter(Environment.CurrentDirectory + "/Maps/gm_" + file_id + ".json"))
+            {
+                sw.Write(save_json);
+                sw.Close();
+                sw.Dispose();
+            }
+        }
 
         public Terrain(float map_X, float map_Y, int pixel_width, int pixel_height)
         {

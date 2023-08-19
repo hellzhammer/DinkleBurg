@@ -15,6 +15,7 @@ namespace DinkleBurg.Editor_Components
         // tabs + title label
         Button Terrain_Tab { get; set; }
         Button Vegetation_Tab { get; set; }
+        Button save { get; set; }
 
         public Box side_panel { get; protected set; }
 
@@ -23,7 +24,7 @@ namespace DinkleBurg.Editor_Components
             // init a box along side of screen
             Editor.current.tile_manager.current = TabState.terrain;
             vegetation_Menu = new Vegetation_Menu();
-            terrain_Menu = new Terrain_Menu();  
+            terrain_Menu = new Terrain_Menu();
         }
 
         public void Initialize(Game game)
@@ -78,6 +79,12 @@ namespace DinkleBurg.Editor_Components
                 }
             };
 
+            this.save = new Button("save_button", "Save", new Vector2(side_panel.Position.X + ((side_panel.Width * 0.4f) - 50), side_panel.Position.Y + ((side_panel.Height * 0.9f)-50)), 100, 45);
+            this.save.Set_Background(Color.Red);
+            this.save.Click = () => {
+                Editor.current.Save();
+            };
+
             this.vegetation_Menu.Initialize(side_panel.Position, game.Window.ClientBounds.Height, 200);
             this.terrain_Menu.Initialize(side_panel.Position, game.Window.ClientBounds.Height, 200);
         }
@@ -87,6 +94,7 @@ namespace DinkleBurg.Editor_Components
             this.side_panel.Update();
             Terrain_Tab.Update();
             Vegetation_Tab.Update();
+            this.save.Update();
 
             if (Editor.current.tile_manager.current == TabState.vegetation)
             {
@@ -111,6 +119,7 @@ namespace DinkleBurg.Editor_Components
             {
                 this.terrain_Menu.Draw();
             }
+            this.save.Draw(true);
         }
     }
 

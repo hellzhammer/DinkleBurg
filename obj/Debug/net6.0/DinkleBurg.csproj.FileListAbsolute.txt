@@ -34,3 +34,4 @@ C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\Content\Editor\Terra
 C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\Content\Editor\Vegetation_Textures\Boulder.xnb
 C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\Content\Editor\Vegetation_Textures\Bush.xnb
 C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\Content\Editor\Vegetation_Textures\Tree_Maple.xnb
+C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\Newtonsoft.Json.dll
