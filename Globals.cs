@@ -30,8 +30,8 @@ public static class Globals
         
         // init the UI intiial views
         MainMenu.Initialize();
-        EditorMenu.Initialize();
-        PlayMenu.Initialize();
+        /*EditorMenu.Initialize();*/
+        /*PlayMenu.Initialize();*/
         Editor_New_View.Initialize(game);
     }
 
@@ -49,9 +49,9 @@ public static class Globals
                 () => { Camera.main_camera.Update(); Viewport = Camera.main_camera.GetViewMatrix(); },
                 ()=>{ Input.Update(); },
                 ()=>{ MainMenu.Update(); },
-                ()=>{ EditorMenu.Update(); },
+                /*()=>{ EditorMenu.Update(); },*/
                 ()=>{ Editor_New_View.Update(); },
-                ()=>{ PlayMenu.Update(); },
+                /*()=>{ PlayMenu.Update(); },*/
             });
     }
 
@@ -61,8 +61,8 @@ public static class Globals
             new ParallelOptions() { MaxDegreeOfParallelism = 1 },
             new System.Action[] {
                 ()=>{ MainMenu.Draw(); },
-                ()=>{ EditorMenu.Draw(); },
-                ()=>{ PlayMenu.Draw(); },
+                /*()=>{ EditorMenu.Draw(); },*/
+                /*()=>{ PlayMenu.Draw(); },*/
                 ()=>{ Editor_New_View.Draw(); },
                 () =>
                 {
@@ -88,12 +88,9 @@ public static class UIInputManager
 
 public enum Game_State
 {
-    Save,
-    Load,
     MainMenu,
     Settings,
     Start_Game_Menu,
     Editor_Menu,
-    Editor_New_Menu,
     Editor_Running
 }

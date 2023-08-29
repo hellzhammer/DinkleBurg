@@ -84,25 +84,25 @@ namespace DinkleBurg.Editor_Components
 
         public static void Draw()
         {
-            if (Globals.state == Game_State.Editor_New_Menu)
+            if (Globals.state == Game_State.Editor_Menu)
             {
-                title.Draw(true);
-                map_name_textbox.Draw(true);
-                map_size_label.Draw(true);
-                start_button.Draw(true);
+				title.Draw(true);
+				map_name_textbox.Draw(true);
+				map_size_label.Draw(true);
+				start_button.Draw(true);
 
-                map_size_input_textbox.Draw(true);
-            }
-        }
+				map_size_input_textbox.Draw(true);
+			}
+		}
 
         public static void Update()
         {
-            if (Globals.state == Game_State.Editor_New_Menu)
+            if (Globals.state == Game_State.Editor_Menu)
             {
-                map_name_textbox.Update();
-                start_button.Update();
-                map_size_input_textbox.Update();
-            }
-        }
+				map_name_textbox.Update();
+				start_button.Update();
+				map_size_input_textbox.Update();
+			}
+		}
     }
 }
