@@ -13,6 +13,8 @@ namespace DinkleBurg.Map_Components
 
         public bool is_walkable = false;
 
+        public Tile() { }
+
         public Tile(int _x, int _y, Texture2D text, string _name)
         {
             this.name = _name;
@@ -66,7 +68,7 @@ namespace DinkleBurg.Map_Components
             // to do
         }
 
-        public TileModel save_model()
+        public TileModel save_tile_model()
         {
             return new TileModel()
             {

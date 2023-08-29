@@ -12,7 +12,7 @@ namespace DinkleBurg
         private int pixel_X = 0, pixel_Y = 0;
         private bool initialized = false;
         public List<List<Tile>> Tile_Map { get; set; }
-        public Tile[][] Scenery_Map { get; set; }
+        public Resource[][] Scenery_Map { get; set; }
 
         public void Save()
         {
@@ -28,23 +28,25 @@ namespace DinkleBurg
                     }
                     else
                     {
-                        var tm = Tile_Map[x][y].save_model();
+                        var tm = Tile_Map[x][y].save_tile_model();
                         tmods.Add(tm);
                     }
                 }
                 tmodels.Add(tmods);
             }
 
-            List<List<TileModel>> vmodels = new List<List<TileModel>>();
+            List<List<ResourceTileModel>> vmodels = new List<List<ResourceTileModel>>();
             for (int x = 0; x < Scenery_Map.Length; x++)
             {
-                List<TileModel> vmods = new List<TileModel>();
+                List<ResourceTileModel> vmods = new List<ResourceTileModel>();
                 for (int y = 0; y < Scenery_Map[x].Length; y++)
                 {
                     if (Scenery_Map[x][y] != null)
                     {
-                        var vm = Scenery_Map[x][y].save_model();
-                        vmods.Add(vm);
+                        var vm = Scenery_Map[x][y].save_resource_model();
+                        vm.type = Scenery_Map[x][y].resrouce_type;
+
+						vmods.Add(vm);
                     }
                     else
                     {
@@ -81,7 +83,7 @@ namespace DinkleBurg
             this.Tile_Map = new List<List<Tile>>();
         }
 
-        public Terrain(List<List<Tile>> tiles, Tile[][] scenery)
+        public Terrain(List<List<Tile>> tiles, Resource[][] scenery)
         {
             Map_Width = tiles[0].Count * pixel_X;
             Map_Height = tiles.Count * pixel_Y;
@@ -107,10 +109,10 @@ namespace DinkleBurg
                 }
 
                 // init the scene objects
-                this.Scenery_Map = new Tile[Tile_Map.Count][];
+                this.Scenery_Map = new Resource[Tile_Map.Count][];
                 for (int y = 0; y < Scenery_Map.Length; y++)
                 {
-                    Scenery_Map[y] = new Tile[Tile_Map[y].Count];
+                    Scenery_Map[y] = new Resource[Tile_Map[y].Count];
                 }
             }
         }

@@ -12,8 +12,8 @@ namespace DinkleBurg.Editor_Components
         {
             public string selected_texture_name { get; set; }
             public Texture2D selected_texture { get; set; }
-
-            public Editor_UI_Manager.TabState current = Editor_UI_Manager.TabState.none;
+			public Resource_Type curr_type = Resource_Type.none;
+			public Editor_UI_Manager.TabState curr_tab_state = Editor_UI_Manager.TabState.none;
         }
 
         private enum EditorState
@@ -108,7 +108,7 @@ namespace DinkleBurg.Editor_Components
 
                         if (Input.MouseDown(MouseButton.Left) || Input.MouseHold(MouseButton.Left))
                         {
-                            if (tile_manager.current == Editor_UI_Manager.TabState.terrain)
+                            if (tile_manager.curr_tab_state == Editor_UI_Manager.TabState.terrain)
                             {
                                 if (terrain.Tile_Map[i][j].OnClick != null)
                                 {
@@ -116,23 +116,23 @@ namespace DinkleBurg.Editor_Components
                                 }
                                 Active_Tile.tile = terrain.Tile_Map[i][j];
                             }
-                            else if (tile_manager.current == Editor_UI_Manager.TabState.vegetation)
+                            else if (tile_manager.curr_tab_state == Editor_UI_Manager.TabState.vegetation)
                             {
-                                terrain.Scenery_Map[i][j] = new Tile((int)terrain.Tile_Map[i][j].Position.X, (int)terrain.Tile_Map[i][j].Position.Y, tile_manager.selected_texture, tile_manager.selected_texture_name);
+                                terrain.Scenery_Map[i][j] = new Resource((int)terrain.Tile_Map[i][j].Position.X, (int)terrain.Tile_Map[i][j].Position.Y, tile_manager.selected_texture, tile_manager.selected_texture_name, Editor.current.tile_manager.curr_type);
                             }
                         }
 
                         // these are hardcoded editor functions
                         if (Input.MouseDown(MouseButton.Right) || Input.MouseHold(MouseButton.Right))
                         {
-                            if (tile_manager.current == Editor_UI_Manager.TabState.terrain)
+                            if (tile_manager.curr_tab_state == Editor_UI_Manager.TabState.terrain)
                             {
                                 terrain.Tile_Map[i][j].name = "air";
                                 terrain.Tile_Map[i][j].is_empty = true;
                                 terrain.Tile_Map[i][j].is_walkable = false;
                                 terrain.Tile_Map[i][j].Texture = Engine_Texture_Loader.gui_textures["Prototype_Tile"];
                             }
-                            else if (tile_manager.current == Editor_UI_Manager.TabState.vegetation)
+                            else if (tile_manager.curr_tab_state == Editor_UI_Manager.TabState.vegetation)
                             {
                                 terrain.Scenery_Map[i][j] = null;
                             }

@@ -22,7 +22,7 @@ namespace DinkleBurg.Editor_Components
         public Editor_UI_Manager()
         {
             // init a box along side of screen
-            Editor.current.tile_manager.current = TabState.terrain;
+            Editor.current.tile_manager.curr_tab_state = TabState.terrain;
             vegetation_Menu = new Vegetation_Menu();
             terrain_Menu = new Terrain_Menu();
         }
@@ -48,13 +48,13 @@ namespace DinkleBurg.Editor_Components
             Terrain_Tab.Set_Background(Color.Green);
 
             Terrain_Tab.Click = () => {
-                if (Editor.current.tile_manager.current != TabState.terrain)
+                if (Editor.current.tile_manager.curr_tab_state != TabState.terrain)
                 {
-                    Editor.current.tile_manager.current = TabState.terrain;
+                    Editor.current.tile_manager.curr_tab_state = TabState.terrain;
                 }
                 else
                 {
-                    Editor.current.tile_manager.current = TabState.none;
+                    Editor.current.tile_manager.curr_tab_state = TabState.none;
                 }
             };
 
@@ -69,13 +69,13 @@ namespace DinkleBurg.Editor_Components
             Vegetation_Tab.Set_Background(Color.Green);
 
             Vegetation_Tab.Click = () => {
-                if (Editor.current.tile_manager.current != TabState.vegetation)
+                if (Editor.current.tile_manager.curr_tab_state != TabState.vegetation)
                 {
-                    Editor.current.tile_manager.current = TabState.vegetation;
+                    Editor.current.tile_manager.curr_tab_state = TabState.vegetation;
                 }
                 else
                 {
-                    Editor.current.tile_manager.current = TabState.none;
+                    Editor.current.tile_manager.curr_tab_state = TabState.none;
                 }
             };
 
@@ -96,11 +96,11 @@ namespace DinkleBurg.Editor_Components
             Vegetation_Tab.Update();
             this.save.Update();
 
-            if (Editor.current.tile_manager.current == TabState.vegetation)
+            if (Editor.current.tile_manager.curr_tab_state == TabState.vegetation)
             {
                 this.vegetation_Menu.Update();
             }
-            else if (Editor.current.tile_manager.current == TabState.terrain)
+            else if (Editor.current.tile_manager.curr_tab_state == TabState.terrain)
             {
                 this.terrain_Menu.Update();
             }
@@ -111,11 +111,11 @@ namespace DinkleBurg.Editor_Components
             this.side_panel.Draw(true);
             Terrain_Tab.Draw(true);
             Vegetation_Tab.Draw(true);
-            if (Editor.current.tile_manager.current == TabState.vegetation)
+            if (Editor.current.tile_manager.curr_tab_state == TabState.vegetation)
             {
                 this.vegetation_Menu.Draw();
             }
-            else if (Editor.current.tile_manager.current == TabState.terrain)
+            else if (Editor.current.tile_manager.curr_tab_state == TabState.terrain)
             {
                 this.terrain_Menu.Draw();
             }
@@ -205,6 +205,19 @@ namespace DinkleBurg.Editor_Components
                     {
                         throw new System.Exception("Tile manager should not be null.");
                     }
+
+                    if (item.Key == "Boulder")
+                    {
+						Editor.current.tile_manager.curr_type = Resource_Type.Stone;
+					}
+                    else if (item.Key == "Bush")
+                    {
+						Editor.current.tile_manager.curr_type = Resource_Type.Food;
+					}
+                    else if (item.Key == "Maple_Tree")
+                    {
+                        Editor.current.tile_manager.curr_type = Resource_Type.Wood;
+					}
 
                     Editor.current.tile_manager.selected_texture = b.background;
                     Editor.current.tile_manager.selected_texture_name = b.name;
