@@ -15,7 +15,8 @@ namespace DinkleBurg.Editor_Components
         // tabs + title label
         Button Terrain_Tab { get; set; }
         Button Vegetation_Tab { get; set; }
-        Button save { get; set; }
+        Button save_button { get; set; }
+        Button spawn_point_button { get; set; }
 
         public Box side_panel { get; protected set; }
 
@@ -79,9 +80,23 @@ namespace DinkleBurg.Editor_Components
                 }
             };
 
-            this.save = new Button("save_button", "Save", new Vector2(side_panel.Position.X + ((side_panel.Width * 0.4f) - 50), side_panel.Position.Y + ((side_panel.Height * 0.9f)-50)), 100, 45);
-            this.save.Set_Background(Color.Red);
-            this.save.Click = () => {
+			spawn_point_button = new Button(
+                "vegetation_button",
+                "New Spawn",
+                new Vector2(Vegetation_Tab.Position.X, Vegetation_Tab.Position.Y + 45),
+                game.Window.ClientBounds.Width / 11,
+                30
+             );
+
+			spawn_point_button.Set_Background(Color.Green);
+
+			spawn_point_button.Click = () => {
+                Debug.WriteLine("Spawn point selected!");
+            };
+
+            this.save_button = new Button("save_button", "Save", new Vector2(side_panel.Position.X + ((side_panel.Width * 0.4f) - 50), side_panel.Position.Y + ((side_panel.Height * 0.9f)-50)), 100, 45);
+            this.save_button.Set_Background(Color.Red);
+            this.save_button.Click = () => {
                 Editor.current.Save();
             };
 
@@ -94,7 +109,8 @@ namespace DinkleBurg.Editor_Components
             this.side_panel.Update();
             Terrain_Tab.Update();
             Vegetation_Tab.Update();
-            this.save.Update();
+            this.save_button.Update();
+            this.spawn_point_button.Update();
 
             if (Editor.current.tile_manager.curr_tab_state == TabState.vegetation)
             {
@@ -119,7 +135,8 @@ namespace DinkleBurg.Editor_Components
             {
                 this.terrain_Menu.Draw();
             }
-            this.save.Draw(true);
+            this.save_button.Draw(true);
+            this.spawn_point_button.Draw(true);
         }
     }
 

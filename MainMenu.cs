@@ -1,18 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using UI_Framework;
 
-
-/*
-
-now that box class has been redesigned, it is time to change the original menus to use the new functions for better and cleaner maintenance.
-
-this file,
-editor new view
-
-box should be used to house all elements to prevent this sloppy mess.
- 
-*/
-
 public static class MainMenu
 {
     private static Box Background { get; set; }
