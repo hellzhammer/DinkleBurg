@@ -76,7 +76,12 @@ public static class MainMenu
         {
             Globals.state = Game_State.Settings;
         };
-    }
+
+		Background.AddChild(Title);
+		Background.AddChild(Game_Start_Button);
+		Background.AddChild(Editor_Button);
+		Background.AddChild(Settings_Button);
+	}
 
     public static void Update()
     {
@@ -85,14 +90,10 @@ public static class MainMenu
             || 
             Globals.state == Game_State.MainMenu 
             || 
-            Globals.state == Game_State.Editor_Menu 
-            || 
             Globals.state == Game_State.Start_Game_Menu
             )
         {
-            Game_Start_Button.Update();
-            Editor_Button.Update();
-            Settings_Button.Update();
+            Background.Update();
         }
     }
 
@@ -103,16 +104,10 @@ public static class MainMenu
             || 
             Globals.state == Game_State.MainMenu 
             || 
-            Globals.state == Game_State.Editor_Menu 
-            || 
             Globals.state == Game_State.Start_Game_Menu
             )
         {
             Background.Draw(true);
-            Title.Draw(true);
-            Game_Start_Button.Draw(true);
-            Editor_Button.Draw(true);
-            Settings_Button.Draw(true);
         }
     }
 }

@@ -38,9 +38,9 @@ namespace UI_Framework
                         if (this.Children.Count > 0)
                         {
                             // continue pos
-                            y = this.Children[Children.Count - 1].Position.Y + widget.Height - 16 + padding;
+                            y = this.Children[Children.Count - 1].Position.Y + widget.Height - widget.Height / 2 + padding;
                         }
-                        Vector2 v2 = new Vector2(this.Position.X + (this.Width / 2) - 16, y);
+                        Vector2 v2 = new Vector2(this.Position.X + (this.Width / 2) - widget.Width / 2, y);
                         widget.rect = new Rectangle(v2.ToPoint(), new Point((int)widget.Width, (int)widget.Height));
                         widget.Position = v2;
                     }

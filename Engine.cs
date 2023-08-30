@@ -102,7 +102,7 @@ public class Engine : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.Clear(Color.Black);
 
         // TODO: Add your drawing code here
         Globals.Sprite_Batch.Begin(transformMatrix: Globals.Viewport);
