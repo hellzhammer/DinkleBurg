@@ -6,7 +6,7 @@ namespace DinkleBurg.Editor_Components
 {
     public static class Editor_New_View
     {
-        private static int Map_Size = 128;
+        private static int Map_Size = 512;
         private static Label title { get; set; }
 
         //first collection // horizontal
