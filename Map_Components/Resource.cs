@@ -1,7 +1,6 @@
 ﻿using DinkleBurg.Editor_Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Security.AccessControl;
 
 namespace DinkleBurg.Map_Components
 {

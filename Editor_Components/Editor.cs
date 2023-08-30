@@ -100,12 +100,6 @@ namespace DinkleBurg.Editor_Components
 
                     if (Mouse_Rect.Intersects(Object_Rect))
                     {
-                        if (terrain.Tile_Map[i][j].is_empty)
-                        {
-                            terrain.Tile_Map[i][j].Texture = Engine_Texture_Loader.gui_textures["Prototype_Tile_Selected"];
-                            Active_Tile.mouse_over = terrain.Tile_Map[i][j];
-                        }
-
                         if (Input.MouseDown(MouseButton.Left) || Input.MouseHold(MouseButton.Left))
                         {
                             if (tile_manager.curr_tab_state == Editor_UI_Manager.TabState.terrain)
@@ -127,10 +121,10 @@ namespace DinkleBurg.Editor_Components
                         {
                             if (tile_manager.curr_tab_state == Editor_UI_Manager.TabState.terrain)
                             {
-                                terrain.Tile_Map[i][j].name = "air";
-                                terrain.Tile_Map[i][j].is_empty = true;
+                                terrain.Tile_Map[i][j].name = "Water";
+                                terrain.Tile_Map[i][j].is_empty = false;
                                 terrain.Tile_Map[i][j].is_walkable = false;
-                                terrain.Tile_Map[i][j].Texture = Engine_Texture_Loader.gui_textures["Prototype_Tile"];
+                                terrain.Tile_Map[i][j].Texture = Engine_Texture_Loader.terrain_textures["Water"];
                             }
                             else if (tile_manager.curr_tab_state == Editor_UI_Manager.TabState.vegetation)
                             {

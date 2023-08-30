@@ -102,7 +102,9 @@ namespace DinkleBurg
                     List<Tile> tiles = new List<Tile>();
                     for (int j = 0; j < Map_Height; j += pixel_Y)
                     {
-                        Tile tile = new Tile(i, j, Engine_Texture_Loader.gui_textures["Prototype_Tile"], "air");
+                        Tile tile = new Tile(i, j, Engine_Texture_Loader.terrain_textures["Water"], "Water");
+                        tile.is_empty = false;
+                        tile.is_walkable = false;
                         tiles.Add(tile);
                     }
                     Tile_Map.Add(tiles);
