@@ -1,5 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using UI_Framework;
+﻿using Engine_lib.UI_Framework;
+using Microsoft.Xna.Framework;
 
 public static class MainMenu
 {
@@ -15,7 +15,8 @@ public static class MainMenu
             "background",
             new Vector2(0, 0),
             Globals.DeviceManager.GraphicsDevice.DisplayMode.Width,
-            Globals.DeviceManager.GraphicsDevice.DisplayMode.Height
+            Globals.DeviceManager.GraphicsDevice.DisplayMode.Height,
+            Globals.DeviceManager.GraphicsDevice
             );
 
         Title = new Label(
@@ -23,34 +24,41 @@ public static class MainMenu
             "Empires",
             new Vector2(10, 15),
             300,
-            30
-            );
-        Title.Set_Background(Color.Transparent);
+            30,
+			Globals.DeviceManager.GraphicsDevice
+			);
+        Title.Set_Background(Color.Transparent, Globals.DeviceManager.GraphicsDevice);
         Game_Start_Button = new Button(
             "start_button",
             "Play",
             new Vector2(10, 60),
             300,
-            50
-            );
+            50,
+			Globals.DeviceManager.GraphicsDevice
+			);
         Editor_Button = new Button(
             "editor_button",
             "Editor",
             new Vector2(10, 125),
             300,
-            50
-            );
+            50,
+			Globals.DeviceManager.GraphicsDevice
+			);
         Settings_Button = new Button(
             "settings_button",
             "Settings",
             new Vector2(10, 190),
             300,
-            50
-            );
+            50,
+			Globals.DeviceManager.GraphicsDevice
+			);
 
-        Game_Start_Button.Set_Background(Color.Gray);
-        Editor_Button.Set_Background(Color.Gray);
-        Settings_Button.Set_Background(Color.Gray);
+        Game_Start_Button.Set_Background(Color.Gray,
+			Globals.DeviceManager.GraphicsDevice);
+        Editor_Button.Set_Background(Color.Gray,
+			Globals.DeviceManager.GraphicsDevice);
+        Settings_Button.Set_Background(Color.Gray,
+			Globals.DeviceManager.GraphicsDevice);
 
         // onclicks to be set up here
         Game_Start_Button.Click = () => {
@@ -95,7 +103,7 @@ public static class MainMenu
             Globals.state == Game_State.Start_Game_Menu
             )
         {
-            Background.Draw(true);
+            Background.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
         }
     }
 }

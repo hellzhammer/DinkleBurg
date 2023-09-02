@@ -67,6 +67,19 @@
             "related": ".xml"
           }
         }
+      },
+      "Engine_lib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "MonoGame.Framework.DesktopGL": "3.8.1.303"
+        },
+        "compile": {
+          "bin/placeholder/Engine_lib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Engine_lib.dll": {}
+        }
       }
     }
   },
@@ -136,10 +149,16 @@
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
+    },
+    "Engine_lib/1.0.0": {
+      "type": "project",
+      "path": "../../../source/repos/Empires/Engine_lib/Engine_lib.csproj",
+      "msbuildProject": "../../../source/repos/Empires/Engine_lib/Engine_lib.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Engine_lib >= 1.0.0",
       "MonoGame.Content.Builder.Task >= 3.8.1.303",
       "MonoGame.Framework.DesktopGL >= 3.8.1.303",
       "Newtonsoft.Json >= 13.0.3"
@@ -180,7 +199,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\mattp\\source\\repos\\Empires\\Engine_lib\\Engine_lib.csproj": {
+              "projectPath": "C:\\Users\\mattp\\source\\repos\\Empires\\Engine_lib\\Engine_lib.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

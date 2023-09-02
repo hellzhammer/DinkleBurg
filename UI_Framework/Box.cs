@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace UI_Framework
+namespace old.UI_Framework
 {
     public class Box : Widget
     {

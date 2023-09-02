@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Threading.Tasks;
-using UI_Framework;
 
 public static class Globals
 {
@@ -73,11 +72,6 @@ public static class Active_Tile
 {
     public static Tile tile { get; set; }
     public static Tile mouse_over { get; set; }
-}
-
-public static class UIInputManager
-{
-    public static TextBox active_element { get; set; }
 }
 
 public enum Game_State

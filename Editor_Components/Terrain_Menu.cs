@@ -1,7 +1,7 @@
-﻿using DinkleBurg.UI_Framework.Interfaces;
+﻿using Engine_lib.UI_Framework;
+using Engine_lib.UI_Framework.Interfaces;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
-using UI_Framework;
 
 namespace DinkleBurg.Editor_Components
 {
@@ -14,19 +14,25 @@ namespace DinkleBurg.Editor_Components
 					"Main_Panel",
 					base_pos,
 					width,
-					height);
+					height,
+			Globals.DeviceManager.GraphicsDevice);
 
-			this.background.Set_Background(Color.Red);
+			this.background.Set_Background(Color.Gray,
+			Globals.DeviceManager.GraphicsDevice);
 			Vector2 last = base_pos;
-			var tLabel = new Label("title_label", "Terrain Textures", this.background.Position, 100, 30);
-			tLabel.Set_Background(Color.Transparent);
+			var tLabel = new Label("title_label", "Terrain Textures", this.background.Position, 100, 30,
+			Globals.DeviceManager.GraphicsDevice);
+			tLabel.Set_Background(Color.Transparent,
+			Globals.DeviceManager.GraphicsDevice);
 			this.background.AddChild(tLabel, false, false);
 
-			var h_box = new Box("hbox", new Vector2(this.background.Position.X, this.background.Position.Y + tLabel.Height), width, height);
+			var h_box = new Box("hbox", new Vector2(this.background.Position.X, this.background.Position.Y + tLabel.Height), width, height,
+			Globals.DeviceManager.GraphicsDevice);
 			h_box.Orientation = WidgetOrientation.Horizontal;
 			foreach (var item in Engine_Texture_Loader.terrain_textures)
 			{
-				Button b = new Button(item.Key, ""/*item.Key*/, last, 32, 32);
+				Button b = new Button(item.Key, ""/*item.Key*/, last, 32, 32,
+			Globals.DeviceManager.GraphicsDevice);
 				b.background = item.Value;
 				b.Click += () => {
 					Debug.WriteLine(item.Key);
@@ -46,7 +52,7 @@ namespace DinkleBurg.Editor_Components
 
 		public override void Draw()
 		{
-			background.Draw(true);
+			background.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
 		}
 
 		public override void Update()

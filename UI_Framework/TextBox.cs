@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace UI_Framework
+namespace old.UI_Framework
 {
     public class TextBox : Widget
     {
@@ -53,10 +53,10 @@ namespace UI_Framework
             var mstate = Input.Get_Mouse_State();
             Vector2 mouse = new Vector2(mstate.X, mstate.Y);
             OnMouseOver(mouse);
-            HandleActivation();
+            //HandleActivation();
         }
 
-        private void HandleActivation()
+        /*private void HandleActivation()
         {
             if (this.is_mouse_over && Input.MouseDown(MouseButton.Left))
             {
@@ -73,7 +73,7 @@ namespace UI_Framework
                         OnDeactivated.Invoke();
                 }
             }
-        }
+        }*/
 
         public override void Draw(bool simple_draw)
         {

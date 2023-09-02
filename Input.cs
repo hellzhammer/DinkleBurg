@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿/*using Microsoft.Xna.Framework.Input;
 
 public enum MouseButton
 {
@@ -121,3 +121,4 @@ public static class Input
         return rtn;
     }
 }
+*/

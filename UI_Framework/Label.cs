@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace UI_Framework
+namespace old.UI_Framework
 {
     public class Label : Widget
     {

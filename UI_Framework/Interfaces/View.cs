@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using UI_Framework;
+using old.UI_Framework;
 
-namespace DinkleBurg.UI_Framework.Interfaces
+namespace old.DinkleBurg.UI_Framework.Interfaces
 {
     public abstract class View : IView
     {
