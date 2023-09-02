@@ -1,5 +1,4 @@
-﻿using DinkleBurg.UI_Framework.Interfaces;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Diagnostics;
 using UI_Framework;
 
@@ -92,6 +91,12 @@ namespace DinkleBurg.Editor_Components
 
 			spawn_point_button.Click = () => {
                 Debug.WriteLine("Spawn point selected!");
+
+                // need a spawn tile model and use the prototype "air" blocks to make mark where spawns are. 
+                // they get a seperate layer so they can be turned off when needed or just after the game starts.
+
+                // set selected to spawn point(prototype block)
+                // set selected name to "prototype block key"
             };
 
             this.save_button = new Button("save_button", "Save", new Vector2(side_panel.Position.X + ((side_panel.Width * 0.4f) - 50), side_panel.Position.Y + ((side_panel.Height * 0.9f)-50)), 100, 45);

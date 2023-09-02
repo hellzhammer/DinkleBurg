@@ -38,7 +38,6 @@ namespace UI_Framework
             display_string = string.Empty;
             int max = (int)Width - 18;
             
-            int cur_len = 0;
             for (int i = 0; i < Content.Length; i++)
             {
                 var len = Globals.Game_Font.MeasureString(display_string + Content[i]);
