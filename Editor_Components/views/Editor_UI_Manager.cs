@@ -131,14 +131,17 @@ namespace DinkleBurg.Editor_Components.views
             save_button.Update();
             spawn_point_button.Update();
 
-            if (Editor.current.tile_manager.curr_tab_state == TabState.vegetation)
+            if (Editor.current != null)
             {
-                vegetation_Menu.Update();
-            }
-            else if (Editor.current.tile_manager.curr_tab_state == TabState.terrain)
-            {
-                terrain_Menu.Update();
-            }
+				if (Editor.current.tile_manager.curr_tab_state == TabState.vegetation)
+				{
+					vegetation_Menu.Update();
+				}
+				else if (Editor.current.tile_manager.curr_tab_state == TabState.terrain)
+				{
+					terrain_Menu.Update();
+				}
+			}
         }
 
         public void Draw()
