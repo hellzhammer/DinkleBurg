@@ -22,7 +22,7 @@ namespace DinkleBurg.Editor_Components.views
             map_size_label = new Label(
                 "map_size",
                 "Map Size",
-                new Vector2(680, 15 + 60 + 60),
+                new Vector2(Globals.DeviceManager.GraphicsDevice.DisplayMode.Width / 3f, 15 + 60 + 60),
                 100,
                 30,
             Globals.DeviceManager.GraphicsDevice
@@ -41,7 +41,7 @@ namespace DinkleBurg.Editor_Components.views
             start_button = new Button(
                 "start",
                 "Start",
-                new Vector2(680, map_size_input_textbox.Height + 150),
+                new Vector2(Globals.DeviceManager.GraphicsDevice.DisplayMode.Width / 3f, map_size_input_textbox.Height + 150),
                 (int)map_size_label.Width + (int)map_size_input_textbox.Width + 10,
                 30,
             Globals.DeviceManager.GraphicsDevice
@@ -50,16 +50,17 @@ namespace DinkleBurg.Editor_Components.views
             title = new Label(
                 "title",
                 "Game Options",
-                new Vector2(680, 15),
+                new Vector2(Globals.DeviceManager.GraphicsDevice.DisplayMode.Width / 3f, 15),
                 (int)map_size_label.Width + (int)map_size_input_textbox.Width + 10,
                 30,
             Globals.DeviceManager.GraphicsDevice
                 );
+            title.Set_Background(Color.Gray, Globals.DeviceManager.GraphicsDevice);
 
             map_name_textbox = new TextBox(
                 "map_name",
                 "World Name",
-                new Vector2(680, 15 + 60),
+                new Vector2(Globals.DeviceManager.GraphicsDevice.DisplayMode.Width / 3f, 15 + 60),
                 (int)map_size_label.Width + (int)map_size_input_textbox.Width + 10,
                 30,
             Globals.DeviceManager.GraphicsDevice

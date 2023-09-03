@@ -82,11 +82,11 @@ public static class MainMenu
     public static void Update()
     {
         if (
-            Globals.state == Game_State.Settings 
+            Globals.state == Game_State.Settings // to remove
             || 
             Globals.state == Game_State.MainMenu 
             || 
-            Globals.state == Game_State.Start_Game_Menu
+            Globals.state == Game_State.Start_Game_Menu // to remove
             )
         {
             Background.Update();
@@ -96,11 +96,11 @@ public static class MainMenu
     public static void Draw()
     {
         if (
-            Globals.state == Game_State.Settings 
+            Globals.state == Game_State.Settings // to remove
             || 
             Globals.state == Game_State.MainMenu 
             || 
-            Globals.state == Game_State.Start_Game_Menu
+            Globals.state == Game_State.Start_Game_Menu // to remove
             )
         {
             Background.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
