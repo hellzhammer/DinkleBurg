@@ -1,14 +1,17 @@
 ﻿using DinkleBurg;
 using DinkleBurg.Editor_Components;
+using DinkleBurg.Editor_Components.views;
 using DinkleBurg.Map_Components;
 using Engine_lib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 public static class Globals
 {
+    public static Dictionary<string, TileDef> terrain_definitions { get; set; }
     public static Game_State state = Game_State.MainMenu;
 
     public static GraphicsDeviceManager DeviceManager { get; set; }

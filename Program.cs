@@ -1,5 +1,8 @@
-﻿
+﻿using DinkleBurg.Map_Components;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 
 public class Program
@@ -16,6 +19,15 @@ public static class FileManager
 {
     public static void Build_System()
     {
+		// load in the tile definitions for the editor and game.
+		if (File.Exists(Environment.CurrentDirectory + "/TerrainTileDefinitions.json"))
+		{
+			Debug.WriteLine("Found the file!");
+			string json = File.ReadAllText(Environment.CurrentDirectory + "/TerrainTileDefinitions.json");
+			Dictionary<string, TileDef> defs = JsonConvert.DeserializeObject<Dictionary<string, TileDef>>(json);
+			Globals.terrain_definitions = defs;
+		}
+
         if (!Directory.Exists(Environment.CurrentDirectory + "/Data"))
         {
             Directory.CreateDirectory(Environment.CurrentDirectory + "/Data");

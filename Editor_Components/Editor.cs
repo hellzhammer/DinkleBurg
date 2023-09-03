@@ -1,4 +1,5 @@
-﻿using DinkleBurg.Map_Components;
+﻿using DinkleBurg.Editor_Components.views;
+using DinkleBurg.Map_Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

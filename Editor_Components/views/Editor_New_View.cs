@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
 
-namespace DinkleBurg.Editor_Components
+namespace DinkleBurg.Editor_Components.views
 {
     public static class Editor_New_View
     {
@@ -25,8 +25,8 @@ namespace DinkleBurg.Editor_Components
                 new Vector2(680, 15 + 60 + 60),
                 100,
                 30,
-			Globals.DeviceManager.GraphicsDevice
-				);
+            Globals.DeviceManager.GraphicsDevice
+                );
 
             map_size_input_textbox = new TextBox(
                 "map_size",
@@ -34,8 +34,8 @@ namespace DinkleBurg.Editor_Components
                 new Vector2(map_size_label.Position.X + map_size_label.Width + 10, map_size_label.Position.Y),
                 300 + 10,
                 30,
-			Globals.DeviceManager.GraphicsDevice
-				)
+            Globals.DeviceManager.GraphicsDevice
+                )
             { numeric_input = true };
 
             start_button = new Button(
@@ -44,8 +44,8 @@ namespace DinkleBurg.Editor_Components
                 new Vector2(680, map_size_input_textbox.Height + 150),
                 (int)map_size_label.Width + (int)map_size_input_textbox.Width + 10,
                 30,
-			Globals.DeviceManager.GraphicsDevice
-				);
+            Globals.DeviceManager.GraphicsDevice
+                );
 
             title = new Label(
                 "title",
@@ -53,8 +53,8 @@ namespace DinkleBurg.Editor_Components
                 new Vector2(680, 15),
                 (int)map_size_label.Width + (int)map_size_input_textbox.Width + 10,
                 30,
-			Globals.DeviceManager.GraphicsDevice
-				);
+            Globals.DeviceManager.GraphicsDevice
+                );
 
             map_name_textbox = new TextBox(
                 "map_name",
@@ -62,20 +62,21 @@ namespace DinkleBurg.Editor_Components
                 new Vector2(680, 15 + 60),
                 (int)map_size_label.Width + (int)map_size_input_textbox.Width + 10,
                 30,
-			Globals.DeviceManager.GraphicsDevice
-				)
+            Globals.DeviceManager.GraphicsDevice
+                )
             { numeric_input = false };
 
             map_name_textbox.Set_Background(Color.Gray,
-			Globals.DeviceManager.GraphicsDevice);
+            Globals.DeviceManager.GraphicsDevice);
             map_size_input_textbox.Set_Background(Color.Gray,
-			Globals.DeviceManager.GraphicsDevice);
+            Globals.DeviceManager.GraphicsDevice);
             map_size_label.Set_Background(Color.Gray,
-			Globals.DeviceManager.GraphicsDevice);
+            Globals.DeviceManager.GraphicsDevice);
             start_button.Set_Background(Color.DarkGreen,
-			Globals.DeviceManager.GraphicsDevice);
+            Globals.DeviceManager.GraphicsDevice);
 
-            start_button.Click = () => {
+            start_button.Click = () =>
+            {
                 Debug.WriteLine("Starting Editor...");
                 if (string.IsNullOrWhiteSpace(map_size_input_textbox.Content))
                 {
@@ -95,23 +96,23 @@ namespace DinkleBurg.Editor_Components
         {
             if (Globals.state == Game_State.Editor_Menu)
             {
-				title.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
-				map_name_textbox.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
-				map_size_label.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
-				start_button.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
+                title.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
+                map_name_textbox.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
+                map_size_label.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
+                start_button.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
 
-				map_size_input_textbox.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
-			}
-		}
+                map_size_input_textbox.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
+            }
+        }
 
         public static void Update()
         {
             if (Globals.state == Game_State.Editor_Menu)
             {
-				map_name_textbox.Update(Globals.Game_Font);
-				start_button.Update();
-				map_size_input_textbox.Update(Globals.Game_Font);
-			}
-		}
+                map_name_textbox.Update(Globals.Game_Font);
+                start_button.Update();
+                map_size_input_textbox.Update(Globals.Game_Font);
+            }
+        }
     }
 }

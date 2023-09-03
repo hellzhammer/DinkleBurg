@@ -28,11 +28,10 @@ namespace DinkleBurg
         public static void LoadTerrainTextures(ContentManager content)
         {
             terrain_textures = new Dictionary<string, Texture2D>();
-            terrain_textures.Add("Cliff", content.Load<Texture2D>("Editor/Terrain_Textures/Cliff_Side"));
-            terrain_textures.Add("Grass", content.Load<Texture2D>("Editor/Terrain_Textures/Grass_Block"));
-            terrain_textures.Add("Sand", content.Load<Texture2D>("Editor/Terrain_Textures/Sand_Block"));
-            terrain_textures.Add("Snow", content.Load<Texture2D>("Editor/Terrain_Textures/Snow_Block"));
-            terrain_textures.Add("Water", content.Load<Texture2D>("Editor/Terrain_Textures/Water_Block"));
+            foreach (var entry in Globals.terrain_definitions)
+            {
+				terrain_textures.Add(entry.Key, content.Load<Texture2D>(entry.Value.file_path));
+			}
         }
 
         /// <summary>

@@ -1,0 +1,27 @@
+{
+  "Grass": {
+    "texture_name": "Grass",
+    "is_walkable": true,
+    "file_path": "Editor/Terrain_Textures/Grass_Block"
+  },
+  "Cliff": {
+    "texture_name": "Cliff",
+    "is_walkable": false,
+    "file_path": "Editor/Terrain_Textures/Cliff_Side"
+  },
+  "Sand": {
+    "texture_name": "Sand",
+    "is_walkable": true,
+    "file_path": "Editor/Terrain_Textures/Sand_Block"
+  },
+  "Water": {
+    "texture_name": "Water",
+    "is_walkable": false,
+    "file_path": "Editor/Terrain_Textures/Water_Block"
+  },
+  "Snow": {
+    "texture_name": "Snow",
+    "is_walkable": true,
+    "file_path": "Editor/Terrain_Textures/Snow_Block"
+  }
+}

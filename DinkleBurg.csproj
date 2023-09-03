@@ -13,10 +13,14 @@
   <ItemGroup>
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
+    <None Remove="TerrainTileDefinitions.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
     <EmbeddedResource Include="Icon.bmp" />
+    <EmbeddedResource Include="TerrainTileDefinitions.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />

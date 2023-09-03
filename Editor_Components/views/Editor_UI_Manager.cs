@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
 
-namespace DinkleBurg.Editor_Components
+namespace DinkleBurg.Editor_Components.views
 {
     public class Editor_UI_Manager
     {
@@ -30,28 +30,29 @@ namespace DinkleBurg.Editor_Components
         public void Initialize(Game game)
         {
             var val = game.Window.ClientBounds.Width - game.Window.ClientBounds.Width / 11;
-            
+
             side_panel = new Box("Main_Panel",
                 new Vector2(val, 0),
                     game.Window.ClientBounds.Width / 11,
                     game.Window.ClientBounds.Height,
-			Globals.DeviceManager.GraphicsDevice
-				);
+            Globals.DeviceManager.GraphicsDevice
+                );
             side_panel.Set_Background(Color.Gray, Globals.DeviceManager.GraphicsDevice);
 
             Terrain_Tab = new Button(
-                "terrain_button", 
-                "Terrain", 
+                "terrain_button",
+                "Terrain",
                 new Vector2(side_panel.Position.X, side_panel.Position.Y),
-                game.Window.ClientBounds.Width / 11, 
+                game.Window.ClientBounds.Width / 11,
                 30,
-			Globals.DeviceManager.GraphicsDevice
-			 );
+            Globals.DeviceManager.GraphicsDevice
+             );
 
             Terrain_Tab.Set_Background(Color.Green,
-			Globals.DeviceManager.GraphicsDevice);
+            Globals.DeviceManager.GraphicsDevice);
 
-            Terrain_Tab.Click = () => {
+            Terrain_Tab.Click = () =>
+            {
                 if (Editor.current.tile_manager.curr_tab_state != TabState.terrain)
                 {
                     Editor.current.tile_manager.curr_tab_state = TabState.terrain;
@@ -68,13 +69,14 @@ namespace DinkleBurg.Editor_Components
                 new Vector2(side_panel.Position.X, side_panel.Position.Y + 45),
                 game.Window.ClientBounds.Width / 11,
                 30,
-			Globals.DeviceManager.GraphicsDevice
-			 );
+            Globals.DeviceManager.GraphicsDevice
+             );
 
             Vegetation_Tab.Set_Background(Color.Green,
-			Globals.DeviceManager.GraphicsDevice);
+            Globals.DeviceManager.GraphicsDevice);
 
-            Vegetation_Tab.Click = () => {
+            Vegetation_Tab.Click = () =>
+            {
                 if (Editor.current.tile_manager.curr_tab_state != TabState.vegetation)
                 {
                     Editor.current.tile_manager.curr_tab_state = TabState.vegetation;
@@ -85,19 +87,20 @@ namespace DinkleBurg.Editor_Components
                 }
             };
 
-			spawn_point_button = new Button(
+            spawn_point_button = new Button(
                 "vegetation_button",
                 "New Spawn",
                 new Vector2(Vegetation_Tab.Position.X, Vegetation_Tab.Position.Y + 45),
                 game.Window.ClientBounds.Width / 11,
                 30,
-			Globals.DeviceManager.GraphicsDevice
-			 );
+            Globals.DeviceManager.GraphicsDevice
+             );
 
-			spawn_point_button.Set_Background(Color.Green,
-			Globals.DeviceManager.GraphicsDevice);
+            spawn_point_button.Set_Background(Color.Green,
+            Globals.DeviceManager.GraphicsDevice);
 
-			spawn_point_button.Click = () => {
+            spawn_point_button.Click = () =>
+            {
                 Debug.WriteLine("Spawn point selected!");
 
                 // need a spawn tile model and use the prototype "air" blocks to make mark where spawns are. 
@@ -107,51 +110,52 @@ namespace DinkleBurg.Editor_Components
                 // set selected name to "prototype block key"
             };
 
-            this.save_button = new Button("save_button", "Save", new Vector2(side_panel.Position.X + ((side_panel.Width * 0.4f) - 50), side_panel.Position.Y + ((side_panel.Height * 0.9f)-50)), 100, 45,
-			Globals.DeviceManager.GraphicsDevice);
-            this.save_button.Set_Background(Color.Red,
-			Globals.DeviceManager.GraphicsDevice);
-            this.save_button.Click = () => {
+            save_button = new Button("save_button", "Save", new Vector2(side_panel.Position.X + (side_panel.Width * 0.4f - 50), side_panel.Position.Y + (side_panel.Height * 0.9f - 50)), 100, 45,
+            Globals.DeviceManager.GraphicsDevice);
+            save_button.Set_Background(Color.Red,
+            Globals.DeviceManager.GraphicsDevice);
+            save_button.Click = () =>
+            {
                 Editor.current.Save();
             };
 
-            this.vegetation_Menu.Initialize(side_panel.Position, game.Window.ClientBounds.Height, 200);
-            this.terrain_Menu.Initialize(side_panel.Position, game.Window.ClientBounds.Height, 200);
+            vegetation_Menu.Initialize(side_panel.Position, game.Window.ClientBounds.Height, 200);
+            terrain_Menu.Initialize(side_panel.Position, game.Window.ClientBounds.Height, 200);
         }
 
         public void Update()
         {
-            this.side_panel.Update();
+            side_panel.Update();
             Terrain_Tab.Update();
             Vegetation_Tab.Update();
-            this.save_button.Update();
-            this.spawn_point_button.Update();
+            save_button.Update();
+            spawn_point_button.Update();
 
             if (Editor.current.tile_manager.curr_tab_state == TabState.vegetation)
             {
-                this.vegetation_Menu.Update();
+                vegetation_Menu.Update();
             }
             else if (Editor.current.tile_manager.curr_tab_state == TabState.terrain)
             {
-                this.terrain_Menu.Update();
+                terrain_Menu.Update();
             }
         }
 
         public void Draw()
         {
-            this.side_panel.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
+            side_panel.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
             Terrain_Tab.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
             Vegetation_Tab.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
             if (Editor.current.tile_manager.curr_tab_state == TabState.vegetation)
             {
-                this.vegetation_Menu.Draw();
+                vegetation_Menu.Draw();
             }
             else if (Editor.current.tile_manager.curr_tab_state == TabState.terrain)
             {
-                this.terrain_Menu.Draw();
+                terrain_Menu.Draw();
             }
-            this.save_button.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
-            this.spawn_point_button.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
+            save_button.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
+            spawn_point_button.Draw(true, Globals.Sprite_Batch, Globals.Viewport, Globals.Game_Font);
         }
     }
 }

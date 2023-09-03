@@ -97,14 +97,15 @@ namespace DinkleBurg
         {
             if (!initialized)
             {
+                string water_tile = "Water";
                 for (int i = 0; i < Map_Width; i += pixel_X)
                 {
                     List<Tile> tiles = new List<Tile>();
                     for (int j = 0; j < Map_Height; j += pixel_Y)
                     {
-                        Tile tile = new Tile(i, j, Engine_Texture_Loader.terrain_textures["Water"], "Water");
+                        Tile tile = new Tile(i, j, Engine_Texture_Loader.terrain_textures[water_tile], water_tile);
+                        tile.is_walkable = Globals.terrain_definitions[water_tile].is_walkable;
                         tile.is_empty = false;
-                        tile.is_walkable = false;
                         tiles.Add(tile);
                     }
                     Tile_Map.Add(tiles);

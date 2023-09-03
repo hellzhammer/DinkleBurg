@@ -23,12 +23,21 @@ namespace DinkleBurg.Map_Components
             init();
         }
 
+        public Tile(TileDef def, Vector2 pos, string name)
+        {
+            this.is_walkable = def.is_walkable;
+            this.name = name;
+			this.Position = pos;
+            this.Texture = Engine_Texture_Loader.terrain_textures[def.texture_name];
+		}
+
         public Tile(TileModel model)
         {
             this.name = model.texture_name;
             this.Position = new Vector2(model.x, model.y);
             this.Texture = Engine_Texture_Loader.terrain_textures[model.texture_name];
             this.is_empty = model.is_empty;
+            this.is_walkable = model.is_walkable;
             init();
         }
 
@@ -43,6 +52,7 @@ namespace DinkleBurg.Map_Components
                         this.is_empty = false;
                         this.Texture = Editor.current.tile_manager.selected_texture; //Selection.Selected_Texture;
                         this.name = Editor.current.tile_manager.selected_texture_name;
+                        this.is_walkable = Globals.terrain_definitions[this.name].is_walkable;
                     }
                 }
             };
@@ -54,7 +64,8 @@ namespace DinkleBurg.Map_Components
                     this.is_empty = false;
                     this.Texture = Editor.current.tile_manager.selected_texture; //Selection.Selected_Texture;
                     this.name = Editor.current.tile_manager.selected_texture_name;
-                }
+					this.is_walkable = Globals.terrain_definitions[this.name].is_walkable;
+				}
             };
         }
 
@@ -72,6 +83,7 @@ namespace DinkleBurg.Map_Components
         {
             return new TileModel()
             {
+                is_walkable = this.is_walkable,
                 is_empty = this.is_empty,
                 texture_name = this.name,
                 x = (int)Position.X,
@@ -80,11 +92,19 @@ namespace DinkleBurg.Map_Components
         }
     }
 
+    public class TileDef
+    {
+        public string texture_name { get; set; }
+        public bool is_walkable { get; set; }
+        public string file_path { get; set; }
+	}
+
     public class TileModel
     {
         public string texture_name { get; set; }
-        public int x { get; set; }
+		public bool is_empty { get; set; }
+		public int x { get; set; }
         public int y { get; set; }
-        public bool is_empty { get; set; }
-    }
+		public bool is_walkable { get; set; }
+	}
 }

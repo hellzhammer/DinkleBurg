@@ -37,3 +37,4 @@ C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\Content\Editor\Veget
 C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\Engine_lib.dll
 C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\Engine_lib.pdb
+C:\Users\mattp\OneDrive\Desktop\DinkleBurg\bin\Debug\net6.0\TerrainTileDefinitions.json
